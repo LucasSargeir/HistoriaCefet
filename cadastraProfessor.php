@@ -1,4 +1,5 @@
 <?php
+
 	include("conectaBanco.php"); 
 	
 	$nome = $_REQUEST['nome'];
@@ -16,16 +17,16 @@
 
 	$sql = "insert into professor (nome,email,token,blog,biografia,imagem) values ('$nome','$email','$token','$blog','$biografia','images/pic011.jpg')";
 
-	$resposta = mysqli_query($link, $sql);				/* Enviando a consulta para o banco de dados */
+	$resposta = mysqli_query($link, $sql);				
 
 	if($resposta){
-		header("location: index.php"); //. mysql_insert_id(); se quiser mostrar o id 		/* Deu Certo */
+		header("location: index.php");
 
 	}
 	else{
-		echo mysqli_error($link);												/* Erro ao executar a consulta */
+		echo mysqli_error($link);										
 	}
 
-	mysqli_close($link);													/* Fecha a conexão */
+	mysqli_close($link);												
 
 ?>
