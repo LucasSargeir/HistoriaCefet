@@ -30,7 +30,7 @@ O site funciona através de 3 níveis de acesso.
 
   - Postagem dos vídeos
 
-    ![Postagem de video](/images/readme/vídeos.png)
+    ![Postagem de video](/images/readme/videos.png)
 
   - Visualização de um vídeo
 
