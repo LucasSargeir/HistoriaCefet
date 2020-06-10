@@ -18,7 +18,7 @@
 
 	$token = sha1("$email$senha");
 
-	$sql = "insert into professor (nome,email,token,blog,biografia,imagem) values ('$nome','$email','$token','$blog','$biografia','images/pic011.jpg')";
+	$sql = "insert into professor (nome,email,token,blog,biografia,imagem,admin) values ('$nome','$email','$token','$blog','$biografia','images/pic011.jpg', 0)";
 
 
 	$resposta = mysqli_query($link, $sql);				
@@ -30,20 +30,6 @@
 	else{
 		echo mysqli_error($link);										
 	}
-
-	mysqli_close($link);												
-
-	$resposta = mysqli_query($link, $sql);
-
-	if($resposta){
-		header("location: index.php");
-
-	}
-	else{
-		echo mysqli_error($link);										
-	}
-
-	mysqli_close($link);										
 
 
 ?>

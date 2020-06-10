@@ -175,38 +175,41 @@
 														<h2>Textos</h2>
 													</header><div class='posts' >";
 
-												for ($i=0; $i < count($linhaTextos); $i++) { 
-													
-													$respostaProf = mysqli_query($link, "select * from professor where id_professor = {$linhaTextos[$i]['idP']}");
+												if($linhaTextos){
 
-													$linhaProf = mysqli_fetch_assoc($respostaProf);
+													for ($i=0; $i < count($linhaTextos); $i++) { 
+														
+														$respostaProf = mysqli_query($link, "select * from professor where id_professor = {$linhaTextos[$i]['idP']}");
 
-													$nomeImagem = nomeImagem($linhaProf['id_professor'],"miniatura_", $link);
+														$linhaProf = mysqli_fetch_assoc($respostaProf);
 
-													echo "<article >
-													<img style='width:32%;height:40%;border-radius:50px'src='$nomeImagem' alt='' />
-													<div><h3>{$linhaTextos[$i]['nome']}</h3>
-													{$linhaProf['nome']} <br><h6>";
+														$nomeImagem = nomeImagem($linhaProf['id_professor'],"miniatura_", $link);
 
-													$data = "".$linhaTextos[$i]['data'];
-													$data = str_replace("-","/",$data);
-													$data = printaData($data);
-													echo $data;
-													
-													echo " - "; 
-													$hora = "".$linhaTextos[$i]['hora'];
-													$hora = $hora[0].$hora[1].$hora[2].$hora[3].$hora[4];
-													echo $hora;
+														echo "<article >
+														<img style='width:32%;height:40%;border-radius:50px'src='$nomeImagem' alt='' />
+														<div><h3>{$linhaTextos[$i]['nome']}</h3>
+														{$linhaProf['nome']} <br><h6>";
 
-													echo"</h6></div>
-													<div style='overflow: hidden; width:25em; border:1px; text-overflow: ellipsis;  white-space:nowrap;'>
-														    {$linhaTextos[$i]['resumo']} 
-													</div>
-														<br>
+														$data = "".$linhaTextos[$i]['data'];
+														$data = str_replace("-","/",$data);
+														$data = printaData($data);
+														echo $data;
+														
+														echo " - "; 
+														$hora = "".$linhaTextos[$i]['hora'];
+														$hora = $hora[0].$hora[1].$hora[2].$hora[3].$hora[4];
+														echo $hora;
 
-														<ul class='actions'>
-															<li><a href='texto.php?id={$linhaTextos[$i]['id_texto']}' class='button special'>Mais</a></li>
-														</ul></article>";
+														echo"</h6></div>
+														<div style='overflow: hidden; width:25em; border:1px; text-overflow: ellipsis;  white-space:nowrap;'>
+															    {$linhaTextos[$i]['resumo']} 
+														</div>
+															<br>
+
+															<ul class='actions'>
+																<li><a href='texto.php?id={$linhaTextos[$i]['id_texto']}' class='button special'>Mais</a></li>
+															</ul></article>";
+													}
 												}
 
 

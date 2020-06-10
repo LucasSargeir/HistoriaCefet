@@ -126,39 +126,40 @@
 												<h2>Textos</h2>
 											</header><div class='posts' >";
 
-										for ($i=0; $i < count($linhaTextos); $i++) { 
-											
-											$respostaProf = mysqli_query($link, "select * from professor where id_professor = {$linhaTextos[$i]['idP']}");
-											
-												$linhaProf = mysqli_fetch_assoc($respostaProf);
-
-												$nomeImagem = nomeImagem($linhaProf['id_professor'],"miniatura_", $link);
-
-												echo "<article >
-												<img style='width:32%;height:40%;border-radius:50px'src='$nomeImagem' alt='' />
-												<div><h3>{$linhaTextos[$i]['nome']}</h3>
-												{$linhaProf['nome']} <br><h6>";
-
-												$data = "".$linhaTextos[$i]['data'];
-												$data = str_replace("-","/",$data);
-												$data = printaData($data);
-												echo $data;
-												
-												echo " - "; 
-												$hora = "".$linhaTextos[$i]['hora'];
-												$hora = $hora[0].$hora[1].$hora[2].$hora[3].$hora[4];
-												echo $hora;
-
-												echo"</h6></div>
-												<div style='overflow: hidden; width:25em; border:1px; text-overflow: ellipsis;  white-space:nowrap;'>
-													    {$linhaTextos[$i]['resumo']} 
-												</div>
-													<br>
-
-													<ul class='actions'>
-														<li><a href='texto.php?id={$linhaTextos[$i]['id_texto']}' class='button special'>Mais</a></li>
-													</ul></article>";
-											}
+											if($linhaTextos){
+												for ($i=0; $i < count($linhaTextos); $i++) { 
+																							
+													$respostaProf = mysqli_query($link, "select * from professor where id_professor = {$linhaTextos[$i]['idP']}");
+													
+														$linhaProf = mysqli_fetch_assoc($respostaProf);
+	
+														$nomeImagem = nomeImagem($linhaProf['id_professor'],"miniatura_", $link);
+	
+														echo "<article >
+														<img style='width:32%;height:40%;border-radius:50px'src='$nomeImagem' alt='' />
+														<div><h3>{$linhaTextos[$i]['nome']}</h3>
+														{$linhaProf['nome']} <br><h6>";
+	
+														$data = "".$linhaTextos[$i]['data'];
+														$data = str_replace("-","/",$data);
+														$data = printaData($data);
+														echo $data;
+														
+														echo " - "; 
+														$hora = "".$linhaTextos[$i]['hora'];
+														$hora = $hora[0].$hora[1].$hora[2].$hora[3].$hora[4];
+														echo $hora;
+	
+														echo"</h6></div>
+														<div style='overflow: hidden; width:25em; border:1px; text-overflow: ellipsis;  white-space:nowrap;'>
+															    {$linhaTextos[$i]['resumo']} 
+														</div>
+															<br>
+	
+															<ul class='actions'>
+																<li><a href='texto.php?id={$linhaTextos[$i]['id_texto']}' class='button special'>Mais</a></li>
+															</ul></article>";
+													}}
 
 
 										//include("filtraT.php");
@@ -223,38 +224,40 @@
 										echo"<header class='major'>
 												<h2>Vídeos</h2>
 											</header><div class='posts' >";
+										
+										if($linhaVideos){
 
-										for ($i=0; $i < count($linhaVideos); $i++) { 
-											
-											$respostaProf = mysqli_query($link, "select * from professor where id_professor = {$linhaVideos[$i]['idP']}");
+											for ($i=0; $i < count($linhaVideos); $i++) { 
+												
+												$respostaProf = mysqli_query($link, "select * from professor where id_professor = {$linhaVideos[$i]['idP']}");
 
-											$linhaProf = mysqli_fetch_assoc($respostaProf);
+												$linhaProf = mysqli_fetch_assoc($respostaProf);
 
-											$nomeImagem = nomeImagem($linhaProf['id_professor'],"miniatura_", $link);
-											echo "<article><img style='width:32%;height:40%;border-radius:50px'src='$nomeImagem' alt='' /><br><h3>{$linhaVideos[$i]['titulo']}</h3>{$linhaProf['nome']}<h6>";
+												$nomeImagem = nomeImagem($linhaProf['id_professor'],"miniatura_", $link);
+												echo "<article><img style='width:32%;height:40%;border-radius:50px'src='$nomeImagem' alt='' /><br><h3>{$linhaVideos[$i]['titulo']}</h3>{$linhaProf['nome']}<h6>";
 
-											$data = "".$linhaVideos[$i]['data'];
-											$data = str_replace("-","/",$data);
-											$data = printaData($data);
-											echo $data;
-											
-											echo " - "; 
-											$hora = "".$linhaVideos[$i]['hora'];
-											$hora = $hora[0].$hora[1].$hora[2].$hora[3].$hora[4];
-											echo $hora;
+												$data = "".$linhaVideos[$i]['data'];
+												$data = str_replace("-","/",$data);
+												$data = printaData($data);
+												echo $data;
+												
+												echo " - "; 
+												$hora = "".$linhaVideos[$i]['hora'];
+												$hora = $hora[0].$hora[1].$hora[2].$hora[3].$hora[4];
+												echo $hora;
 
-											echo"</h6>
-												<div style='overflow: hidden; width:28em; border:1px; text-overflow: ellipsis;  white-space:nowrap;'>
-												    {$linhaVideos[$i]['resumo']} 
-												</div>
-												<br>
+												echo"</h6>
+													<div style='overflow: hidden; width:28em; border:1px; text-overflow: ellipsis;  white-space:nowrap;'>
+													    {$linhaVideos[$i]['resumo']} 
+													</div>
+													<br>
 
-												<ul class='actions'>
-													<li><a href='video.php?id={$linhaVideos[$i]['id_video']}' class='button special'>Mais</a></li>
-												</ul></article>";
-											
+													<ul class='actions'>
+														<li><a href='video.php?id={$linhaVideos[$i]['id_video']}' class='button special'>Mais</a></li>
+													</ul></article>";
+												
+											}
 										}
-
 										echo"</div><hr class='major' />";
 
 										$totalObj = mysqli_num_rows(mysqli_query($link, "select * from video"));

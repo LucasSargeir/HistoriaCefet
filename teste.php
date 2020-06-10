@@ -88,6 +88,10 @@
 
 		$qtdTotal = mysqli_num_rows(mysqli_query($link, "select * from ".$tabela));
 
+		if($qtdTotal == 0){
+			return;
+		}
+
 		$idTeste = maiorId($tabela,$chavePrimaria, $link);//1;// testa os ids;
 		$numObjetos = 0;// quantos objetos tem no vetor
  		$objetos;// os objetos em si
@@ -108,6 +112,7 @@
 				}
 				$idTeste--;
 			}
+
 		}
 
 		$aux = null;
